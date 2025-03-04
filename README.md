@@ -1,5 +1,5 @@
 # Information_retrevial_system
-Project 2(Using LLM, VectorDB, Stream Lit)
+
 Information Retrieval System project is an example of building a practical RAG (Retrieval Augmented Generation) application. Here's a summary of what I've accomplished and learned:
 Document Processing: Implemented PDF parsing and text extraction using PyPDF2, learning how to handle multiple documents and error cases.
 Text Processing: Learned about chunking strategies using LangChain's RecursiveCharacterTextSplitter to break down documents into manageable pieces.
