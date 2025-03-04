@@ -25,15 +25,16 @@ def main():
         st.title("menu")
         pdf_docs=st.file_uploader("upload your pdf files and clickon the submit & process button",accept_multiple_files=True)
         if st.button("submit & process"):
-           with st.spinner("Processing PDFs..."):
-               raw_text = get_pdf_text(pdf_docs)
-               with st.spinner("Chunking text..."):
-                   text_chunks = get_text_chunks(raw_text)
-                   with st.spinner("Creating embeddings and vector store..."):
-                       vector_store = get_vector_store(text_chunks)
-                       with st.spinner("Setting up conversation chain..."):
-                           st.session_state.conversation = get_conversational_chain(vector_store)
-    
+            with st.spinner("Processing..."):
+                try:
+                    raw_text = get_pdf_text(pdf_docs)
+                    text_chunks = get_text_chunks(raw_text)
+                    vector_store = get_vector_store(text_chunks)
+                    st.write(f"Got {len(text_chunks)} chunks")
+                    st.session_state.conversation = get_conversational_chain(vector_store)
+                    st.success("Done")
+                except Exception as e:
+                    st.error(f"Error during processing: {str(e)}")
 
 if __name__=="__main__":
     main()
